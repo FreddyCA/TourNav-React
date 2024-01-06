@@ -7,6 +7,14 @@ import { IdiomaProvider } from "./context/contextIdioma";
 import TourNav from "./pages/TourNav";
 import Services from "./pages/Services";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NavBarServices from "./sections/NavBarServices";
+import NavigationService from "./sections/NavigationService";
+import MisionVisionHistoria from "./pages/MisionVisionHistoria";
+import CurrentData from "./pages/CurrentData";
+import ExclusiveOffer from "./pages/ExclusiveOffer";
+import Commitments from "./pages/Commitments";
+import GeneralConditions from "./pages/GeneralConditions";
+import NoData from "./components/NoData";
 
 const App = () => {
   return (
@@ -14,7 +22,6 @@ const App = () => {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Landing />} />
-
         <Route
           path="/tournav/*"
           element={
@@ -22,10 +29,30 @@ const App = () => {
               <Routes>
                 <Route index element={<TourNav />} />
                 <Route
-                  path="services"
+                  path="services/*"
                   element={
                     <ProtectedRoute>
-                      <Services />
+                      <NavBarServices />
+                      <NavigationService />
+                      <Routes>
+                        <Route index element={<Services />} />
+                        <Route
+                          path="mission-vision-history"
+                          element={<MisionVisionHistoria />}
+                        />
+                        <Route path="current-data" element={<CurrentData />} />
+                        <Route
+                          path="exclusive-offer"
+                          element={<ExclusiveOffer />}
+                        />
+                        <Route path="commitments" element={<Commitments />} />
+                        <Route
+                          path="general-conditions"
+                          element={<GeneralConditions />}
+                        />
+                        {/* hacer un no hay resultados en ves del NotFound */}
+                        <Route path="*" element={<NoData />} />
+                      </Routes>
                     </ProtectedRoute>
                   }
                 />
