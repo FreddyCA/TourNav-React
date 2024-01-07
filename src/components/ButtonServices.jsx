@@ -17,10 +17,10 @@ const ButtonServicesStyle = styled.button`
   }
 `;
 
-const ButtonServices = ({ text, path, dataInd }) => {
+const ButtonServices = ({ text, path }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(path, { state: { dataToSend: dataInd } });
+    navigate(path);
   };
   return (
     <ButtonServicesStyle onClick={handleClick}>{text}</ButtonServicesStyle>
@@ -30,7 +30,6 @@ const ButtonServices = ({ text, path, dataInd }) => {
 ButtonServices.propTypes = {
   text: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
-  dataInd: PropTypes.any.isRequired,
 };
 
 export default ButtonServices;

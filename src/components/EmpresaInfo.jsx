@@ -21,10 +21,9 @@ const EmpresaInfo = ({ data }) => {
         <ButtonServices
           text={data.buttons[0]}
           path={"/tournav/services/mission-vision-history"}
-          dataInd={data.mision_vision_historia}
         />
 
-        <ButtonServices
+        {/* <ButtonServices
           text={data.buttons[1]}
           path={"/tournav/services/current-data"}
           dataInd={data.datos}
@@ -45,8 +44,7 @@ const EmpresaInfo = ({ data }) => {
           text={data.buttons[4]}
           path={"/tournav/services/general-conditions"}
           dataInd={data.condiciones_gen}
-        />
-
+        /> */}
       </EmpresaInfoStyle>
     </BoxServices>
   );

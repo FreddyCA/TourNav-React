@@ -3,6 +3,8 @@ import BoxContent from "../components/BoxContent";
 import styled from "styled-components";
 import TitleItemService from "../components/TitleItemService";
 import DescItemService from "../components/DescItemService";
+import useItemCollectionData from "../hooks/useItemCollectionData";
+import { useEffect, useState } from "react";
 
 const MisionVisionHistoriaStyle = styled.div`
   display: flex;
@@ -16,12 +18,20 @@ const MVHItemContent = styled.div`
 `;
 
 const MisionVisionHistoria = () => {
-  const location = useLocation();
-  const dataReceived = location.state.dataToSend;
-  
+  const itemCollection = "mision_vision_historia";
+  const dataCollection = useItemCollectionData(itemCollection);
+  console.log("datacollection", dataCollection?.data_complete);
+  console.log("datacollection", dataCollection);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (dataCollection) return setLoading(false);
+  }, [dataCollection]);
+
   return (
     <BoxContent>
-      <MisionVisionHistoriaStyle>
+      {loading ? <h1>Cargando...</h1> : <h1>{dataCollection.mision.title}</h1>}
+
+      {/* <MisionVisionHistoriaStyle>
         {dataReceived.map((item, index) =>
           index === 1 ? (
             <MVHItemContent key={index}>
@@ -36,7 +46,7 @@ const MisionVisionHistoria = () => {
             </MVHItemContent>
           )
         )}
-      </MisionVisionHistoriaStyle>
+      </MisionVisionHistoriaStyle> */}
     </BoxContent>
   );
 };

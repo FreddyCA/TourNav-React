@@ -13,6 +13,10 @@ const Services = () => {
   const [data, setData] = useState(null);
 
   // console.log(data);
+
+  // fetch solo para la informacion de la data un camppo
+  // ademas de eliminar los ocal y session
+  // fetch a cada part item collection de la aplicaión
   useEffect(() => {
     const fetchData = async () => {
       try {

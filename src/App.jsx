@@ -15,7 +15,6 @@ import ExclusiveOffer from "./pages/ExclusiveOffer";
 import Commitments from "./pages/Commitments";
 import GeneralConditions from "./pages/GeneralConditions";
 import NoData from "./components/NoData";
-import ProtectedElement from "./components/ProtectedElement";
 
 const App = () => {
   return (
@@ -39,43 +38,17 @@ const App = () => {
                         <Route index element={<Services />} />
                         <Route
                           path="mission-vision-history"
-                          element={
-                            <ProtectedElement>
-                              <MisionVisionHistoria />
-                            </ProtectedElement>
-                          }
+                          element={<MisionVisionHistoria />}
                         />
-                        <Route
-                          path="current-data"
-                          element={
-                            <ProtectedElement>
-                              <CurrentData />
-                            </ProtectedElement>
-                          }
-                        />
+                        <Route path="current-data" element={<CurrentData />} />
                         <Route
                           path="exclusive-offer"
-                          element={
-                            <ProtectedElement>
-                              <ExclusiveOffer />
-                            </ProtectedElement>
-                          }
+                          element={<ExclusiveOffer />}
                         />
-                        <Route
-                          path="commitments"
-                          element={
-                            <ProtectedElement>
-                              <Commitments />
-                            </ProtectedElement>
-                          }
-                        />
+                        <Route path="commitments" element={<Commitments />} />
                         <Route
                           path="general-conditions"
-                          element={
-                            <ProtectedElement>
-                              <GeneralConditions />
-                            </ProtectedElement>
-                          }
+                          element={<GeneralConditions />}
                         />
                         <Route path="*" element={<NoData />} />
                       </Routes>
