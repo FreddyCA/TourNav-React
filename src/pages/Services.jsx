@@ -8,7 +8,7 @@ import Loading from "../components/Loading";
 const Services = () => {
   const { idioma } = useIdioma();
 
-  console.log(idioma);
+  // console.log(idioma);
 
   const [data, setData] = useState(null);
 
@@ -31,7 +31,7 @@ const Services = () => {
             const newData = docSnapshot.data();
             setData(newData);
 
-            // Guardar en sessionStorage para futuras visitas
+            // Guardar en sessionStorage para futura navegacion
             sessionStorage.setItem("miDataInf", JSON.stringify(newData));
           } else {
             console.log("No hay data disponible");
@@ -41,6 +41,8 @@ const Services = () => {
         console.log("Error fetching data:", error);
       }
     };
+
+    // el fetch voolvero un hook, no guardarlo en el storage
 
     fetchData();
   }, [idioma]);

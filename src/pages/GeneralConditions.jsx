@@ -1,7 +1,10 @@
-const GeneralConditions = () => {
-  return (
-    <div>GeneralConditions</div>
-  )
-}
+import { useLocation } from "react-router-dom";
 
-export default GeneralConditions
+const GeneralConditions = () => {
+  const location = useLocation();
+  const dataReceived = location.state.dataToSend;
+  console.log(dataReceived);
+  return <div>GeneralConditions</div>;
+};
+
+export default GeneralConditions;

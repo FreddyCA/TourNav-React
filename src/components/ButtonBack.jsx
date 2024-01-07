@@ -21,6 +21,7 @@ const ButtonBack = () => {
   const handleClick = () => {
     navigate(-1);
   };
+
   return <ButtonBackStyle onClick={handleClick}>Go Back</ButtonBackStyle>;
 };
 

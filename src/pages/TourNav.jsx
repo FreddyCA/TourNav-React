@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TextInitial from "../components/TextInitial";
 import ButtonInitial from "../components/ButtonInitial";
 import { useIdioma } from "../context/contextIdioma";
+import { useEffect } from "react";
 
 const TourNavContentStyle = styled.div`
   display: flex;
@@ -23,27 +24,31 @@ const TourNavItemsContent = styled.div`
 
 const TourNav = () => {
   const { idioma } = useIdioma();
-  console.log(idioma);
+  console.log("torunav idioma", idioma);
   const data = [
     { id: "english", title: "English" },
     { id: "espaniol", title: "Español" },
   ];
+  useEffect(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+  }, []);
   return (
-      <>
-        <NavBarInitial />
-        <TourNavContentStyle>
-          <TourNavItemsContent>
-            <TextInitial text="Estás por ingresar a la guía de servicios de TourNav" />
-            <TextInitial text="El mejor operador Turístico de Bolivia" />
-            <TextInitial text="Por favor elija el idioma deseado" small />
-          </TourNavItemsContent>
-          <TourNavItemsContent>
-            {data.map((item) => (
-              <ButtonInitial key={item.id} itemData={item} />
-            ))}
-          </TourNavItemsContent>
-        </TourNavContentStyle>
-      </>
+    <>
+      <NavBarInitial />
+      <TourNavContentStyle>
+        <TourNavItemsContent>
+          <TextInitial text="Estás por ingresar a la guía de servicios de TourNav" />
+          <TextInitial text="El mejor operador Turístico de Bolivia" />
+          <TextInitial text="Por favor elija el idioma deseado" small />
+        </TourNavItemsContent>
+        <TourNavItemsContent>
+          {data.map((item) => (
+            <ButtonInitial key={item.id} itemData={item} />
+          ))}
+        </TourNavItemsContent>
+      </TourNavContentStyle>
+    </>
   );
 };
 
