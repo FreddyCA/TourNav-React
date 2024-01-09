@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import TextTitleService from "./TextTitleService";
+import { useEffect, useState } from "react";
+import { firebaseDB } from "../firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const InfoServicesStyle = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 400px;
 `;
 
 const InfoServicesContent = styled.div`
@@ -12,39 +16,59 @@ const InfoServicesContent = styled.div`
 `;
 
 const InfoServices = () => {
+  const [data, setData] = useState(null);
+
+  // console.log(data);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const dataRef = doc(firebaseDB, "encabezado_empresa/data");
+        const docSnapshot = await getDoc(dataRef);
+        console.log("peticion de informacion");
+
+        if (docSnapshot.exists()) {
+          const newData = docSnapshot.data();
+          setData(newData);
+        }
+      } catch (error) {
+        console.log("error info services:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <InfoServicesStyle>
       <InfoServicesContent>
         <TextTitleService text="Curier Adress:" />
-        <TextTitleService text="Calle6 #100 Achumani" textTitle />
+        <TextTitleService text={data?.courier_address} textTitle />
       </InfoServicesContent>
-      <TextTitleService text="Nuestra Señora La Paz, Bolivia" textTitle />
       <InfoServicesContent>
         <TextTitleService text="Email:" />
-        <TextTitleService text="tournav@gmail.com" textTitle />
-        <TextTitleService text="Web" />
-        <TextTitleService text="www.tournav.com" textTitle />
+        <TextTitleService text={data?.email} textTitle />
+        <TextTitleService text="Web:" />
+        <TextTitleService text={data?.website} textTitle />
       </InfoServicesContent>
       <InfoServicesContent>
         <TextTitleService text="Skype:" />
-        <TextTitleService text="tournavelemntal" textTitle />
-        <TextTitleService text="tournavelemntalnext" textTitle />
+        <TextTitleService text={data?.skype} textTitle />
       </InfoServicesContent>
       <InfoServicesContent>
         <TextTitleService text="Phone:" />
-        <TextTitleService text="(591-2) 245-4545" textTitle />
+        <TextTitleService text={data?.phone} textTitle />
         <TextTitleService text="Fax:" />
-        <TextTitleService text="(591-2) 245-5454" textTitle />
+        <TextTitleService text={data?.fax} textTitle />
       </InfoServicesContent>
       <InfoServicesContent>
-        <TextTitleService text="From Peru:" />
-        <TextTitleService text="72727272" textTitle />
+        <TextTitleService text="From Chile:" />
+        <TextTitleService text={data?.from_chile} textTitle />
         <TextTitleService text="From USA:" />
-        <TextTitleService text="(777) 787 8787" textTitle />
+        <TextTitleService text={data?.from_usa} textTitle />
       </InfoServicesContent>
       <InfoServicesContent>
         <TextTitleService text="Toll Free:" />
-        <TextTitleService text="800 10 TOURNAV" textTitle />
+        <TextTitleService text={data?.toll_free} textTitle />
       </InfoServicesContent>
     </InfoServicesStyle>
   );

@@ -20,7 +20,7 @@ const TextTitleService = ({ text, textTitle }) => {
 };
 
 TextTitleService.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   textTitle: PropTypes.bool,
 };
 

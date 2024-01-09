@@ -23,28 +23,24 @@ const EmpresaInfo = ({ data }) => {
           path={"/tournav/services/mission-vision-history"}
         />
 
-        {/* <ButtonServices
+        <ButtonServices
           text={data.buttons[1]}
           path={"/tournav/services/current-data"}
-          dataInd={data.datos}
         />
-
         <ButtonServices
           text={data.buttons[2]}
           path={"/tournav/services/exclusive-offer"}
-          dataInd={data.oferta_exclusiva}
         />
+
         <ButtonServices
           text={data.buttons[3]}
           path={"/tournav/services/commitments"}
-          dataInd={data.compromisos}
         />
 
         <ButtonServices
           text={data.buttons[4]}
           path={"/tournav/services/general-conditions"}
-          dataInd={data.condiciones_gen}
-        /> */}
+        />
       </EmpresaInfoStyle>
     </BoxServices>
   );
